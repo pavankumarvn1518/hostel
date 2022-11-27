@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+</script>
+<h1><center><u>MY PAGE </u></center> </h1>
+<form action="My_page.html">
+<method="post">
+  <label for="name">NAME:</label>
+  <input type="text" name="fname" required><br><br>
+  <label for="branch">BRANCH:</label>
+  <select name="branch" id="branch">
+    <option value="cs">CS</option>
+    <option value="ec">EC</option>
+    <option value="me">ME</option>
+    <option value="ce">CE</option>
+  </select>
+<p>SEM:</p>
+<input id="radio_1" value="1" type="radio" name="check"/>1
+<input id="radio_2" value="2" type="radio" name="check"/>2
+<input id="radio_3" value="3" type="radio" name="check"/>3
+ 
+<script>
+  radiobutton = document.getElementById("radio_1");
+   radiobutton.checked = true;
+   </script><br><br>
+<input type="submit" value="Submit">
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+h6 {
+  text-align: left;
+}
+<script>
+function validateForm() {
+  let x = document.forms["My_page"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+function validateForm() {
+  let y = document.forms["My_page"]["Reg"].value;
+  if (y == "") {
+    alert("Reg must be filled out");
+    return false;
+  }
+}
+</style>
+<body>
+ <form action="reg2.html">
+<h6>Home</h6><br><br>
+<h1><center><u>MY NAME </u></center> </h1>
+<name="myForm" onsubmit="return validateForm()" method="post">
+<label> NAME :</label>       
+<input type="text" name="firstname" placeholder="Enter name"  size="15" required/> <br> <br>
+ <reg="myForm" onsubmit="return validateForm()" method="post">
+<label> REG :</label>       
+<input type="text" name="Reg" placeholder="Enter Reg no"  size="15" /> <br><br>
+<p>BRANCH:</p>
+<input id="radio_1" value="1" type="radio" name="check"/>Minor
+<input id="radio_2" value="2" type="radio" name="check"/>Major
+<input id="radio_3" value="3" type="radio" name="check"/>senior citizen
+ 
+   <script>
+      radiobutton = document.getElementById("radio_1");
+      radiobutton.checked = true;
+   </script><br><br>
+<button type="submit">submit</button>
+</form>   
+</body>
+</html>
