@@ -1,0 +1,349 @@
+mongo DB 
+
+
+
+add.jsp
+
+
+<%-- 
+    Document   : add
+    Created on : Dec 18, 2022, 11:01:16 AM
+    Author     : gpt
+--%>
+
+<%@page import="org.bson.Document"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.MongoClient"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+           <%
+        try  {
+            /* TODO output your page here. You may use following sample code. */
+          
+            String Name=request.getParameter("Name");
+            //out.println(Name+"<br>");
+            String Sem=request.getParameter("Sem");
+            //out.println(Sem+"<br>");
+            String Branch=request.getParameter("Branch");
+            //out.println(Branch+"<br>);
+            MongoClient mongo=new MongoClient("localhost",27017);
+            MongoDatabase db=mongo.getDatabase("MYmongo");
+            MongoCollection collection=db.getCollection("note");
+          
+            Document document=new Document("Name",Name)
+                    .append("Sem",Sem)
+                    .append("Branch",Branch);
+            collection.insertOne(document);
+            out.println("Data Added");
+            out.println("<script>alert('Data added succesfully')</script>");
+            
+           
+            
+        }
+        catch(Exception e)
+        {
+         out.println (e);   
+        }
+        %>
+       
+    </body>
+</html>
+
+
+del.jsp
+
+
+
+<%-- 
+    Document   : del
+    Created on : Dec 18, 2022, 1:26:16 PM
+    Author     : gpt
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+      <%
+         String Name=request.getParameter("Name");
+         %>
+         <h1>Do You Really Want To Delete Name <% out.println(Name);%>?</h1><br>
+         <a href="deldb.htm?Name=<%out.println(Name);%>">YES</a> <a href="view.htm">NO</a>
+    </body>
+</html>
+
+
+
+
+
+deldb.jsp
+
+
+<%-- 
+    Document   : deldb
+    Created on : Dec 18, 2022, 1:47:23 PM
+    Author     : gpt
+--%>
+
+<%@page import="com.mongodb.client.result.DeleteResult"%>
+<%@page import="com.mongodb.client.model.Filters"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.MongoClient"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+       <%
+        try {
+            MongoClient mongo=new MongoClient("localhost",27017);
+            MongoDatabase db=mongo.getDatabase("MYmongo");
+            MongoCollection collection=db.getCollection("note");
+            String Name=request.getParameter("Name");
+            DeleteResult result =collection.deleteOne(Filters.eq("Name",Name));
+            if (result.getDeletedCount() ==0) {
+                out.println("Error Deleting DATA");
+            }
+                out.println("<h1>Document delted succesfully...</h1>");
+                out.println("<script>alert('Data deleted succesfully')</script>");
+                out.println("<meta http-equiv = \"refresh\" content = \"0;view.htm\"/>");
+                out.println("</body>");
+                out.println("</html>");
+            
+        }
+        catch(Exception e)
+        {
+         out.println(e);   
+        }
+        %>
+    </body>
+</html>
+
+
+edit.jsp
+
+<%-- 
+    Document   : deldb
+    Created on : Dec 18, 2022, 1:47:23 PM
+    Author     : gpt
+--%>
+
+<%@page import="com.mongodb.client.result.DeleteResult"%>
+<%@page import="com.mongodb.client.model.Filters"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.MongoClient"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+       <%
+        try {
+            MongoClient mongo=new MongoClient("localhost",27017);
+            MongoDatabase db=mongo.getDatabase("MYmongo");
+            MongoCollection collection=db.getCollection("note");
+            String Name=request.getParameter("Name");
+            DeleteResult result =collection.deleteOne(Filters.eq("Name",Name));
+            if (result.getDeletedCount() ==0) {
+                out.println("Error Deleting DATA");
+            }
+                out.println("<h1>Document delted succesfully...</h1>");
+                out.println("<script>alert('Data deleted succesfully')</script>");
+                out.println("<meta http-equiv = \"refresh\" content = \"0;view.htm\"/>");
+                out.println("</body>");
+                out.println("</html>");
+            
+        }
+        catch(Exception e)
+        {
+         out.println(e);   
+        }
+        %>
+    </body>
+</html>
+
+
+
+editdb.jsp
+
+
+<%-- 
+    Document   : editdb
+    Created on : Dec 18, 2022, 4:13:52 PM
+    Author     : gpt
+--%>
+
+<%@page import="com.mongodb.client.result.UpdateResult"%>
+<%@page import="com.mongodb.client.model.Updates"%>
+<%@page import="com.mongodb.client.model.Filters"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.MongoClient"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+           <%
+        try {
+            MongoClient mongo=new MongoClient("localhost",27017);
+            MongoDatabase db=mongo.getDatabase("MYmongo");
+            MongoCollection collection=db.getCollection("note");
+            String Name=request.getParameter("Name");
+            String Sem=request.getParameter("Sem");
+            String Branch=request.getParameter("Branch");
+            String id=request.getParameter("id");
+            UpdateResult result =collection.updateOne(Filters.eq("Name",id), Updates.set("Name",Name));
+            UpdateResult result1 =collection.updateOne(Filters.eq("Name",id), Updates.set("Sem",Sem));
+            UpdateResult result2 =collection.updateOne(Filters.eq("Name",id), Updates.set("Branch",Branch)); 
+            
+            out.println("<h1>Document Updated succesfullly...</h1>");
+            out.println("<meta http-equiv = \"refresh\" content = \"0;view.htm\"/>");
+            out.println("<script>alert('Data Updated succesfully')</script>");
+           }
+        catch(Exception e)
+        {
+         out.println(e);   
+        }
+        %>
+    </body>
+</html>
+
+
+index.jsp
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Welcome to Spring Web MVC project</title>
+    </head>
+
+    <body>
+        <center>
+        <div class="new" id="new">
+            <div><h1><u> REGISTRATION PAGE</u></h1></div>
+      <a href="index.htm">Add</a> | <a href="view.htm">View</a>
+      
+        <form action="add.htm" method="post">
+            <h3>Name:<input type="text" name="Name" placeholder="Enter Your Name" required><br><br></h3>
+            <label for="Sem">Choose a Sem:</label>
+  <select name="Sem" id="Sem">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select><br><br>
+  <label for="Branch">Choose a Branch:</label>
+    <select name="Branch" id="Branch">
+    <option value="CS">CS</option>
+    <option value="ME">ME</option>
+    <option value="EC">EC</option>
+    <option value="CE">CE</option>
+    </select><br><br>
+            
+            <input type="submit" value="ADD"> 
+        </form>
+        </center>
+    </body>
+</html>
+
+
+
+view.jsp
+
+
+<%-- 
+    Document   : view
+    Created on : Dec 18, 2022, 12:26:38 PM
+    Author     : gpt
+--%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="com.mongodb.client.FindIterable"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.mongodb.client.MongoDatabase"%>
+<%@page import="com.mongodb.Mongo"%>
+<%@page import="com.mongodb.MongoClient"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <p align=""center><a href="index.htm">Add</a> | <a href="view.htm">view</a>
+        <h1 align="center">view note</h1>
+        <table align="center" border="2">
+            <tr><th>Name</th><th>Sem</th><th>Branch</th><th></th></tr>
+       
+        <%
+            try{
+               MongoClient mongo=new MongoClient("localhost",27017);
+               MongoDatabase db=mongo.getDatabase("MYmongo");
+               MongoCollection collection=db.getCollection("note");
+               FindIterable iterDoc=collection.find();
+               Iterator res=iterDoc.iterator();
+               while(res.hasNext())
+               {
+                   String doc=res.next().toString();
+                   //out.println(doc+"<br>");
+                   String[] row=doc.split("[{{]",0);
+                   String[] coma=row[2].split("[,]",0);
+                   //out.println(coma[3]+"<br>");
+                   String[] fullid=coma[0].split("[=]",0);
+                   String id=fullid[1];
+                   String[] fullName=coma[1].split("[=]",0);
+                   String Name=fullName[1];
+                   String[] fullSem=coma[2].split("[=]",0);
+                   String Sem=fullSem[1];
+                   String[] fullBranch=coma[3].split("[=]",0);
+                   String[] Branch=fullBranch[1].split("[}}]",0);
+                   String Branch1=Branch[0];
+                   
+                   out.println("<tr><td>"+Name+"</td><td>"+Sem+"</td><td>"+Branch1+"</td><td><a href='del.htm?Name="+Name+"'>delete</a> | <a href='edit.htm?Name="+Name+"'>Edit</a></td></tr>");
+                
+                   
+               }
+            }
+        catch(Exception e)
+        {
+         out.println (e);   
+        }
+        %>
+        </table>
+    </body>
+</html>
+

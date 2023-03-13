@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function validationform()
+    {
+      var na=document.forms["regform"]["NAME"].value;
+      var fn=document.forms["regform"]["FATHER NAME"].value;
+      var mn=document.forms["regform"]["MOTHER NAME"].value;
+      var rn=document.forms["regform"]["REG NO"].value;
+      var br=document.forms["regform"]["BANCH"];
+      var sm=document.forms["regform"]["SEMESTER"];
+       
+    if (na==null || na=="")
+    {
+    alert(" name cannot be blank");
+    return false;
+    }
+    else if(fn==null || fn=="")
+    {
+    alert("father name cannot be blank");
+    return false;
+    }
+    else if(mn==null || mn=="")
+    {
+    alert("mother name cannot be blank");
+    return false;
+    }
+    else if(rn==null || rn==""&& (rn.length<8))
+    {
+    alert("register number cannot be blank");
+    return false;
+    }
+    else if(br==null || br=="")
+    {
+    alert("please select your branch");
+    return false;
+    }
+    else if(sm==null || sm=="")
+    {
+    alert("please select your semester")
+    returnfalse;
+    }
+    
+    }
+    </script>    
+    
+    
+     
+    
+    <h2><center>GOVERNMENT OF KARNATAKA </center></h2>
+    <h2><center>DEPARTMENT OF TECHNICAL EDUCATION</center></h2>
+    <h2><center>BOARD OF TECHNICL EXAMINATION</center></h2>
+
+        <form name="regform" method="post">
+        <div>
+        <label for="name">NAME :</label>&nbsp&nbsp&nbsp
+         <input type="text" id="name" name="name" placeholder="Enter your full name"required><br><br>
+
+        <label for="name">FATHER NAME :</label>&nbsp&nbsp&nbsp
+         <input type="text" id="name" name="name" placeholder="Enter your father name"required><br><br>
+
+        <label for="name">MOTHER NAME :</label>&nbsp&nbsp&nbsp
+         <input type="text" id="name" name="name" placeholder="Enter your mother name"required><br><br>
+     
+       <label for="name">REG NO :</label>
+         <input type="text" id="name" name="name" placeholder="Enter your Register number"required><br><br>
+         
+       <label for="branch">SELECT BRANCH :</label><BR>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" id="ce" name="new" value="CE">
+          <label for="html">CE</label><br>
+        
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" id="cs" name="new" value="CS">
+          <label for="html">CS</label><br>
+        
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" id="me" name="new" value="ME">
+          <label for="html">ME</label><br>
+       
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" id="ec" name="new" value="EC">
+          <label for="html">EC</label><br><BR>
+            <input type="submit" value="submit">
+       <dl>
+       <dt>
+       <label for="cars">SELECT SEMESTER :</label>
+       </dt>
+         <dd><select name="sem" id="sem">
+           <option value="sem">1st SEM</option>
+           <option value="sem">2nd SEM</option>
+           <option value="sem">3rd SEM</option>
+           <option value="sem">4th SEM</option>
+           <option value="sem">5th SEM</option>
+           <option value="sem">6th SEM</option>
+         </select></dd>
+         <br><br>
+</div>
+</form>

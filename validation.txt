@@ -1,0 +1,47 @@
+<script>
+function validationform()
+{
+  var na=document.forms["regform"]["NAME"].value;
+  var fn=document.forms["regform"]["FATHER NAME"].value;
+  var mn=document.forms["regform"]["MOTHER NAME"].value;
+  var rn=document.forms["regform"]["REG NO"].value;
+  var br=document.forms["regform"]["BANCH"];
+  var sm=document.forms["regform"]["SEMESTER"];
+   
+if (na==null || na=="")
+{
+alert(" name cannot be blank");
+return false;
+}
+else if(fn==null || fn=="")
+{
+alert("father name cannot be blank");
+return false;
+}
+else if(mn==null || mn=="")
+{
+alert("mother name cannot be blank");
+return false;
+}
+else if(rn==null || rn==""&& (rn.length<8)){  
+)
+{
+alert("register number cannot be blank");
+return false;
+}
+else if(br==null || br=="")
+{
+alert("please select your branch");
+return false;
+}
+else if(sm==null || sm=="")
+{
+alert(""please select your semester");
+return false;
+}
+
+}
+</script>
+
+
+
